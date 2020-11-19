@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Marcellus+SC&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="coinstyle.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <section class="section">
+            
+        <p class="trt_bet">Alors? Tête ou Bitch? Tu choisis quoi?</p>
+            <div class="div_bet">
+                
+                <span class="TouB" id="tête" >
+                Tête
+                </span>
+
+                <input type="radio" id="bet_T" class="rdbtn" name="ch_bet" value="Tête" autocomplete="off">
+                            <label for="bet_T"  id="label"><div class="radio" onclick="bet_tête()"></div></label>
+
+                <div class="ou">
+                ou
+                </div>
+
+                <span class="TouB" id="bitch">
+                 Bitch?
+                </span>
+
+                <input type="radio" id="bet_B" class="rdbtn" name="ch_bet" value="Bitch" autocomplete="off">
+                <label for="bet_B"  id="label"><div class="radio" onclick="bet_bitch()"></div></label>
+
+                                
+            </div>
+
+            <div class="coinframe">
+
+                <p id="coin"></p>
+
+            </div>
+            
+            <button class="btn" onclick="flipIt()">
+                Flip
+            </button>
+            
+            
+
+            <p id="result"></p>
+            
+            <div id="pl_score" class="score"></div>
+            <div id="cpu_score" class="score"></div>
+            <div class="nmscr" id="cpu"> cpu </div>
+            <div class="nmscr" id="joueur"> joueur </div>
+
+
+    </section>
+
+<script>
+    var bet = 0;
+    var pl = 0;
+    var cpu = 0;
+    document.getElementById('pl_score').innerHTML = pl;
+    document.getElementById('cpu_score').innerHTML = cpu;
+
+    function bet_tête()
+    {
+        bet = 1;
+        document.getElementById('coin').innerHTML = "";
+        document.getElementById('result').innerHTML = ""; 
+        document.getElementById('tête').style.color = '#f8860b';
+        document.getElementById('bitch').style.color = 'white';   
+    }
+    function bet_bitch()
+    {
+        bet = 2; 
+        document.getElementById('coin').innerHTML = "";
+        document.getElementById('result').innerHTML = "";
+        document.getElementById('bitch').style.color = '#f8860b';  
+        document.getElementById('tête').style.color = 'white';  
+    }
+    
+
+    function flipIt()
+    {
+        if(bet ==  0)
+        {
+            document.getElementById('result').innerHTML = "Commence d'abord par faire une prédiction."
+            return;
+        }
+
+        function getRandomInt(min, max)
+        {
+        return Math.floor(Math.random() * (max - min)) + min;
+        }
+        
+        var num = getRandomInt(1, 3)
+        if(num == 1)
+        {
+            document.getElementById('coin').innerHTML = "Tête";
+        }
+        else
+        {
+            document.getElementById('coin').innerHTML = "Bitch";
+        }
+
+        if(bet == num)
+        {
+            document.getElementById('result').innerHTML = "Shit... t'as gagné...";
+            pl++;
+            document.getElementById('pl_score').innerHTML = pl;
+        }
+        else
+        {
+            document.getElementById('result').innerHTML = "Ha!Ha! T'as perdu!!";
+            cpu++;
+            document.getElementById('cpu_score').innerHTML = cpu;
+        }
+    }
+
+
+
+</script>
+
+
+
+</body>
+</html>
